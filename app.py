@@ -1,12 +1,3 @@
-from utils.db_connection import get_connection
+from models.student import delete_student
 
-try:
-    conn = get_connection()
-
-    if conn.is_connected():
-        print("Database Connected Successfully!")
-
-    conn.close()
-
-except Exception as e:
-    print("Error:", e)
+delete_student(6)
