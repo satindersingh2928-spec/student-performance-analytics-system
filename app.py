@@ -1,13 +1,15 @@
-from analytics.performance_analysis import (
-    get_department_average_marks
+from analytics.attendance_analysis import (
+    get_department_attendance_statistics
 )
 
-departments = get_department_average_marks()
+departments = get_department_attendance_statistics()
 
-print("\nDepartment Wise Average Marks")
-print("-" * 40)
+print("\nDepartment Wise Attendance")
+print("-" * 35)
 
 for dept in departments:
+
     print(f"Department: {dept[0]}")
-    print(f"Average Marks: {round(dept[1], 2)}")
-    print("-" * 40)
+    print(f"Average Attendance: {round(dept[1], 2)}%")
+
+    print("-" * 35)
