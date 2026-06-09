@@ -93,3 +93,37 @@ def delete_student(student_id):
     conn.close()
 
     print("Student Deleted Successfully!")
+    
+def get_total_students():
+
+    students = get_all_students()
+
+    return len(students)
+
+def get_average_marks():
+
+    students = get_all_students()
+
+    total_marks = 0
+
+    for student in students:
+
+        total_marks += float(student[5])
+
+    average = total_marks / len(students)
+
+    return round(average, 2)
+
+def get_top_performer():
+
+    students = get_all_students()
+
+    top_student = students[0]
+
+    for student in students:
+
+        if student[5] > top_student[5]:
+
+            top_student = student
+
+    return top_student
