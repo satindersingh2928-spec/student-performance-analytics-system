@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Update Student</h2>
+
+<form method="POST">
+
+    <p><strong>Name:</strong> {{ student[1] }}</p>
+
+    <p><strong>Email:</strong> {{ student[2] }}</p>
+
+    <p><strong>Department:</strong> {{ student[3] }}</p>
+
+    <p><strong>Semester:</strong> {{ student[4] }}</p>
+
+    <label>Marks:</label><br>
+    <input type="number"
+           step="0.01"
+           name="marks"
+           value="{{ student[5] }}">
+    <br><br>
+
+    <label>Attendance:</label><br>
+    <input type="number"
+           step="0.01"
+           name="attendance"
+           value="{{ student[6] }}">
+    <br><br>
+
+    <button type="submit">
+        Update Student
+    </button>
+
+</form>
+
+{% endblock %}

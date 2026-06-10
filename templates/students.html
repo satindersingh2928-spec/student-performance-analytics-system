@@ -7,11 +7,12 @@
 <table border="1">
 
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Department</th>
-        <th>Marks</th>
-        <th>Attendance</th>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Marks</th>
+    <th>Attendance</th>
+    <th>Action</th>
     </tr>
 
     {% for student in students %}
@@ -22,7 +23,19 @@
         <td>{{ student[3] }}</td>
         <td>{{ student[5] }}</td>
         <td>{{ student[6] }}</td>
+    <td>
+    <a href="/edit-student/{{ student[0] }}">
+        Edit
+    </a>
+
+    |
+
+    <a href="/delete-student/{{ student[0] }}">
+        Delete
+    </a>
+    </td>
     </tr>
+    
 
     {% endfor %}
 

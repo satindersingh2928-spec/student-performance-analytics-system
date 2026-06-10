@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add New Student</h2>
+
+<form method="POST">
+
+    <label>Name:</label><br>
+    <input type="text" name="name"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email"><br><br>
+
+    <label>Department:</label><br>
+    <input type="text" name="department"><br><br>
+
+    <label>Semester:</label><br>
+    <input type="number" name="semester"><br><br>
+
+    <label>Marks:</label><br>
+    <input type="number" step="0.01" name="marks"><br><br>
+
+    <label>Attendance:</label><br>
+    <input type="number" step="0.01" name="attendance"><br><br>
+
+    <button type="submit">
+        Add Student
+    </button>
+
+</form>
+
+{% endblock %}
