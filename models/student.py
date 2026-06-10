@@ -23,12 +23,25 @@ def add_student(name, email, department, year, marks, attendance):
 
     print("Student Added Successfully!")
     
-def get_all_students():
+def get_all_students(sort_by=None, page=1):
 
     conn = get_connection()
     cursor = conn.cursor()
+    per_page = 10
+    offset = (page - 1) * per_page
 
     query = "SELECT * FROM students"
+
+    if sort_by == "name":
+        query += " ORDER BY student_name ASC"
+
+    elif sort_by == "marks":
+        query += " ORDER BY marks DESC"
+
+    elif sort_by == "attendance":
+        query += " ORDER BY attendance DESC"
+        
+    query += f" LIMIT {per_page} OFFSET {offset}"
 
     cursor.execute(query)
 
@@ -315,3 +328,47 @@ def get_performance_categories():
     conn.close()
 
     return data
+
+  
+def get_student_details(student_id):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+    SELECT * FROM students
+    WHERE student_id = %s
+    """
+
+    cursor.execute(query, (student_id,))
+    student = cursor.fetchone()
+
+    conn.close()
+
+    return student
+
+def get_students_count():
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = "SELECT COUNT(*) FROM students"
+
+    cursor.execute(query)
+
+    count = cursor.fetchone()[0]
+
+    cursor.close()
+    conn.close()
+
+    return count
+
+def get_total_pages():
+
+    total_students = get_students_count()
+
+    per_page = 10
+
+    total_pages = (total_students + per_page - 1) // per_page
+
+    return total_pages

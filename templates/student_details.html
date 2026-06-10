@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="details-heading">
+    Student Details
+</h2>
+
+<div class="student-card">
+
+    <p><strong>ID:</strong> {{ student[0] }}</p>
+
+    <p><strong>Name:</strong> {{ student[1] }}</p>
+
+    <p><strong>Email:</strong> {{ student[2] }}</p>
+
+    <p><strong>Department:</strong> {{ student[3] }}</p>
+
+    <p><strong>Year:</strong> {{ student[4] }}</p>
+
+    <p><strong>Marks:</strong> {{ student[5] }}</p>
+
+    <p><strong>Attendance:</strong> {{ student[6] }}</p>
+
+</div>
+
+<br>
+
+<a href="/students" class="back-btn">
+    Back to Students
+</a>
+
+{% endblock %}

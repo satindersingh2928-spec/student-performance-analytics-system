@@ -14,15 +14,40 @@
 
     <button type="submit">Search</button>
 
+    <select name="sort">
+
+    <option value="">Sort By</option>
+
+    <option value="name">Name (A-Z)</option>
+
+    <option value="marks">Marks (High-Low)</option>
+
+    <option value="attendance">Attendance (High-Low)</option>
+
+</select>
+
     <a href="/students" class="show-all-btn">
         Show All Students
     </a>
+<div class="export-section">
 
-</form>
+    <a href="/export-csv" class="export-btn">
+        Export CSV
+    </a>
 
+    <a href="/export-excel" class="excel-btn">
+        Export Excel
+    </a>
+
+    <a href="/export-pdf" class="pdf-btn">
+        Export PDF
+    </a>
 <p class="result-count">
-    Total Results: {{ students|length }}
+    Total Results: {{ total_students }}
 </p>
+
+</div>
+
 
 <br>
 
@@ -46,7 +71,12 @@
         <td>{{ student[5] }}</td>
         <td>{{ student[6] }}</td>
     <td>
-    <td>
+
+    <a href="/student/{{ student[0] }}"
+        class="view-btn">
+        View
+    </a>
+
     <a href="/edit-student/{{ student[0] }}"
        class="edit-btn">
        Edit
@@ -57,12 +87,33 @@
        Delete
     </a>
 </td>
-    </td>
     </tr>
     
 
     {% endfor %}
 
 </table>
+
+<div class="pagination">
+
+    {% if page > 1 %}
+
+    <a href="/students?page={{ page - 1 }}"
+       class="page-btn">
+       Previous
+    </a>
+
+    {% endif %}
+
+    {% if page < total_pages %}
+
+<a href="/students?page={{ page + 1 }}"
+   class="page-btn">
+   Next
+</a>
+
+{% endif %}
+
+</div>
 
 {% endblock %}
