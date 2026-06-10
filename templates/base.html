@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <head>
     <title>Student Performance Analytics System</title>
 </head>
@@ -8,16 +9,24 @@
     <h1>Student Performance Analytics System</h1>
 
     <nav>
-    <a href="/">Home</a> |
-    <a href="/dashboard">Dashboard</a> |
-    <a href="/students">Students</a> |
-    <a href="/add-student">Add Student</a>
+    <a href="/">Home</a>
+
+<a href="/dashboard">Dashboard</a>
+
+<a href="/students">Students</a>
+
+<a href="/add-student">Add Student</a>
     </nav>
 
     <hr>
 
     {% block content %}
     {% endblock %}
-
+<footer>
+    <p>
+        Student Performance Analytics System |
+        Flask + MySQL
+    </p>
+</footer>
 </body>
 </html>

@@ -4,6 +4,28 @@
 
 <h2>Students List</h2>
 
+<form method="GET" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Student Name"
+        value="{{ search_query if search_query else '' }}">
+
+    <button type="submit">Search</button>
+
+    <a href="/students" class="show-all-btn">
+        Show All Students
+    </a>
+
+</form>
+
+<p class="result-count">
+    Total Results: {{ students|length }}
+</p>
+
+<br>
+
 <table border="1">
 
     <tr>
@@ -24,15 +46,17 @@
         <td>{{ student[5] }}</td>
         <td>{{ student[6] }}</td>
     <td>
-    <a href="/edit-student/{{ student[0] }}">
-        Edit
+    <td>
+    <a href="/edit-student/{{ student[0] }}"
+       class="edit-btn">
+       Edit
     </a>
 
-    |
-
-    <a href="/delete-student/{{ student[0] }}">
-        Delete
+    <a href="/delete-student/{{ student[0] }}"
+       class="delete-btn">
+       Delete
     </a>
+</td>
     </td>
     </tr>
     

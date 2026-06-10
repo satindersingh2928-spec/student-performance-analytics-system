@@ -7,7 +7,16 @@ from models.student import (
     get_all_students,
     get_total_students,
     get_average_marks,
-    get_top_performer
+    get_top_performer,
+    get_average_attendance,
+    get_department_counts,
+    search_students,
+    get_department_average_marks,
+    get_top_5_students,
+    get_low_performers,
+    get_low_attendance_students,
+    get_department_toppers,
+    get_performance_categories
 )
 
 app = Flask(__name__)
@@ -24,24 +33,55 @@ def dashboard():
     average_marks = get_average_marks()
 
     top_student = get_top_performer()
+    
+    average_attendance = get_average_attendance()
+    
+    department_counts = get_department_counts()
+    
+    department_avg_marks = get_department_average_marks()
+    
+    top_5_students = get_top_5_students()
+    
+    low_performers = get_low_performers()
+    
+    low_attendance_students = get_low_attendance_students()
+    
+    department_toppers = get_department_toppers()
+    
+    performance_data = get_performance_categories()
 
     return render_template(
         "dashboard.html",
         total_students=total_students,
         average_marks=average_marks,
-        top_student=top_student
+        top_student=top_student,
+        average_attendance=average_attendance,
+        department_counts=department_counts,
+        department_avg_marks=department_avg_marks,
+        top_5_students=top_5_students,
+        low_performers=low_performers,
+        low_attendance_students=low_attendance_students,
+        department_toppers=department_toppers,
+        performance_data=performance_data
     )
     
 @app.route("/students")
 def students():
 
-    students_data = get_all_students()
+    search_query = request.args.get("search")
 
-    print(students_data)
+    if search_query:
+
+        students_data = search_students(search_query)
+
+    else:
+
+        students_data = get_all_students()
 
     return render_template(
         "students.html",
-        students=students_data
+        students=students_data,
+        search_query=search_query
     )
     
 @app.route("/add-student", methods=["GET", "POST"])

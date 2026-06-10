@@ -4,12 +4,180 @@
 
 <h2>Dashboard</h2>
 
-<h3>Total Students: {{ total_students }}</h3>
+<div class="dashboard-cards">
 
-<h3>Average Marks: {{ average_marks }}</h3>
+    <div class="card">
+        <h3>Total Students</h3>
+        <p>{{ total_students }}</p>
+    </div>
 
-<h3>Top Performer: {{ top_student[1] }}</h3>
+    <div class="card">
+        <h3>Average Marks</h3>
+        <p>{{ average_marks }}</p>
+    </div>
 
-<h3>Marks: {{ top_student[5] }}</h3>
+    <div class="card">
+        <h3>Top Performer</h3>
+        <p>{{ top_student[1] }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Top Marks</h3>
+        <p>{{ top_student[5] }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Average Attendance</h3>
+        <p>{{ average_attendance }}%</p>
+    </div>
+
+</div>
+
+<br><br>
+
+<h2>Department Statistics</h2>
+
+<table>
+    <tr>
+        <th>Department</th>
+        <th>Students</th>
+    </tr>
+
+    {% for dept in department_counts %}
+    <tr>
+        <td>{{ dept[0] }}</td>
+        <td>{{ dept[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br><br>
+
+<h2>Department Average Marks</h2>
+
+<table>
+    <tr>
+        <th>Department</th>
+        <th>Average Marks</th>
+    </tr>
+
+    {% for dept in department_avg_marks %}
+    <tr>
+        <td>{{ dept[0] }}</td>
+        <td>{{ "%.2f"|format(dept[1]) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br><br>
+
+<h2>🏆 Top 5 Students</h2>
+
+<table>
+    <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Marks</th>
+    </tr>
+
+    {% for student in top_5_students %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ student[1] }}</td>
+        <td>{{ student[3] }}</td>
+        <td>{{ student[5] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>📉 Low Performers (Marks Below 70)</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Marks</th>
+    </tr>
+
+    {% for student in low_performers %}
+    <tr>
+        <td>{{ student[1] }}</td>
+        <td>{{ student[3] }}</td>
+        <td>{{ student[5] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>⚠ Attendance Alert (Below 75%)</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Attendance</th>
+    </tr>
+
+    {% for student in low_attendance_students %}
+    <tr>
+        <td>{{ student[1] }}</td>
+        <td>{{ student[3] }}</td>
+        <td>{{ student[6] }}%</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>🏆 Department Wise Toppers</h2>
+
+<table>
+
+    <tr>
+        <th>Department</th>
+        <th>Topper</th>
+        <th>Marks</th>
+    </tr>
+
+    {% for topper in department_toppers %}
+
+    <tr>
+        <td>{{ topper[0] }}</td>
+        <td>{{ topper[1] }}</td>
+        <td>{{ topper[2] }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<h2>📊 Performance Categories</h2>
+
+<table>
+
+    <tr>
+        <th>Category</th>
+        <th>Students</th>
+    </tr>
+
+    <tr>
+        <td>Excellent (90+)</td>
+        <td>{{ performance_data[0] }}</td>
+    </tr>
+
+    <tr>
+        <td>Good (75-89)</td>
+        <td>{{ performance_data[1] }}</td>
+    </tr>
+
+    <tr>
+        <td>Average (60-74)</td>
+        <td>{{ performance_data[2] }}</td>
+    </tr>
+
+    <tr>
+        <td>Poor (<60)</td>
+        <td>{{ performance_data[3] }}</td>
+    </tr>
+
+</table>
 
 {% endblock %}
